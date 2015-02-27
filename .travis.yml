@@ -6,7 +6,7 @@ env:
 install:
     - curl -L http://php.net/get/php-$phpver.tar.xz/from/this/mirror | tar xJ
     - cd php-$phpver
-    - ./configure
+    - ./configure --disable-xml --disable-libxml --disable-simplexml --disable-dom --disable-xmlreader --disable-xmlwriter --without-pear
     - make
     - cd ..
 
