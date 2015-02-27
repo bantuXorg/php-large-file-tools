@@ -1,0 +1,14 @@
+language: c
+
+env:
+    - phpver=5.6.6
+
+install:
+    - curl -L http://php.net/get/php-$phpver.tar.xz/from/this/mirror | tar xJ
+    - cd php-$phpver
+    - ./configure
+    - make
+    - cd ..
+
+script:
+    - php-$phpver/sapi/cli/php -r "var_dump(PHP_INT_SIZE);"
