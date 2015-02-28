@@ -1,23 +1,16 @@
 language: c
 
 env:
-  - phpver=5.6.6 CCASFLAGS=-m64 CPPFLAGS=-m64 CFLAGS=-m64 LDFLAGS=-m64
-  - phpver=5.6.6 CCASFLAGS=-m32 CPPFLAGS=-m32 CFLAGS="-m32 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64" LDFLAGS=-m32
-  - phpver=5.6.6 CCASFLAGS=-m32 CPPFLAGS=-m32 CFLAGS=-m32 LDFLAGS=-m32
-  - phpver=5.5.22 CCASFLAGS=-m64 CPPFLAGS=-m64 CFLAGS=-m64 LDFLAGS=-m64
-  - phpver=5.5.22 CCASFLAGS=-m32 CPPFLAGS=-m32 CFLAGS="-m32 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64" LDFLAGS=-m32
-  - phpver=5.5.22 CCASFLAGS=-m32 CPPFLAGS=-m32 CFLAGS=-m32 LDFLAGS=-m32
-
-before_install:
-  - sudo apt-get update
+  - phpver=5.6.6 phpint=64
+  - phpver=5.6.6 phpint=32 phplfs=1
+  - phpver=5.6.6 phpint=32
+  - phpver=5.5.22 phpint=64
+  - phpver=5.5.22 phpint=32 phplfs=1
+  - phpver=5.5.22 phpint=32
 
 install:
-  - sudo apt-get install gcc-multilib
-  - curl -L http://php.net/get/php-$phpver.tar.xz/from/this/mirror | tar xJ
-  - cd php-$phpver
-  - ./configure --disable-xml --disable-libxml --disable-simplexml --disable-dom --disable-xmlreader --disable-xmlwriter --without-pear
-  - make
-  - cd ..
+  - . travis/install-apt.sh
+  - . travis/compile-php.sh
 
 script:
   - php-$phpver/sapi/cli/php -r "var_dump(PHP_INT_SIZE);"
