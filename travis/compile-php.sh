@@ -13,12 +13,6 @@ fi
 curl -L "http://php.net/get/php-$phpver.tar.bz2/from/this/mirror" | tar xj
 pushd "php-$phpver"
 ./configure \
-  --disable-xml \
-  --disable-libxml \
-  --disable-simplexml \
-  --disable-dom \
-  --disable-xmlreader \
-  --disable-xmlwriter \
   --without-pear \
   --with-curl
 make
