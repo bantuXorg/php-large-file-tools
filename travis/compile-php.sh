@@ -19,6 +19,7 @@ pushd "php-$phpver"
   --disable-dom \
   --disable-xmlreader \
   --disable-xmlwriter \
-  --without-pear
+  --without-pear \
+  --with-curl
 make
 popd
