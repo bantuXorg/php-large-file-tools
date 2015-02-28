@@ -10,7 +10,7 @@ else
   export CFLAGS="-m$phpint"
 fi
 
-curl -L "http://php.net/get/php-$phpver.tar.xz/from/this/mirror" | tar xJ
+curl -L "http://php.net/get/php-$phpver.tar.bz2/from/this/mirror" | tar xj
 pushd "php-$phpver"
 ./configure \
   --disable-xml \
