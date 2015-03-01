@@ -17,8 +17,8 @@ env:
 install:
   - . travis/install-apt.sh
   - . travis/compile-php.sh
-  - wget https://getcomposer.org/composer.phar
-  - php-$phpver/sapi/cli/php composer.phar install
+  - curl -sS https://getcomposer.org/installer | php
+  - php composer.phar install
 
 script:
   - php-$phpver/sapi/cli/php -r "var_dump(PHP_INT_SIZE);"
