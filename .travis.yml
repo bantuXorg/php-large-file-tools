@@ -17,7 +17,6 @@ env:
 install:
   - . travis/install-apt.sh
   - . travis/compile-php.sh
-  - wget https://phar.phpunit.de/phpunit.phar
   - wget https://getcomposer.org/composer.phar
   - php-$phpver/sapi/cli/php composer.phar install
 
@@ -25,7 +24,7 @@ script:
   - php-$phpver/sapi/cli/php -r "var_dump(PHP_INT_SIZE);"
   - truncate -s 5G test.bin
   - php-$phpver/sapi/cli/php -r "var_dump(filesize('test.bin'));"
-  - php-$phpver/sapi/cli/php phpunit.phar
+  - php-$phpver/sapi/cli/php vendor/bin/phpunit
 
 matrix:
   fast_finish: true
