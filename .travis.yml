@@ -10,6 +10,9 @@ env:
   - phpver=5.4.38 phpint=64
   - phpver=5.4.38 phpint=32 phplfs=1
   - phpver=5.4.38 phpint=32
+  - phpver=5.3.29 phpint=64
+  - phpver=5.3.29 phpint=32 phplfs=1
+  - phpver=5.3.29 phpint=32
 
 install:
   - . travis/install-apt.sh
