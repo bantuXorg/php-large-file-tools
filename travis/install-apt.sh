@@ -1,5 +1,5 @@
 #!/bin/sh
-PKG=''
+PKG='php5-cli'
 if [ "$phpint" -eq "64" ]
 then
   PKG="$PKG libcurl4-openssl-dev libxml2-dev"
