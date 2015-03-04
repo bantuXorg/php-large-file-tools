@@ -21,7 +21,6 @@ install:
   - php composer.phar install
 
 script:
-  - php-$phpver/sapi/cli/php -r "var_dump(PHP_INT_SIZE);"
   - truncate -s 5G test.bin
   - php-$phpver/sapi/cli/php -r "var_dump(filesize('test.bin'));"
   - php-$phpver/sapi/cli/php vendor/bin/phpunit
