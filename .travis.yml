@@ -32,7 +32,11 @@ install:
 script:
   - truncate -s 5G test.bin
   - /usr/local/bin/php -r "var_dump(filesize('test.bin'));"
-  - /usr/local/bin/php vendor/bin/phpunit
+  - /usr/local/bin/php vendor/bin/phpunit --coverage-clover coverage.xml
+
+after_script:
+  - wget https://scrutinizer-ci.com/ocular.phar
+  - php ocular.phar code-coverage:upload --format=php-clover coverage.xml
 
 matrix:
   fast_finish: true
