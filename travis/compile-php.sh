@@ -10,8 +10,13 @@ else
   export CFLAGS="-m$phpint"
 fi
 
-curl -L "http://php.net/get/php-$phpver.tar.bz2/from/this/mirror" | tar xj
-pushd "php-$phpver"
+phpid="php-$phpver"
+if [ ! -d "$phpid" ]
+then
+    curl -L "http://php.net/get/$phpid.tar.bz2/from/this/mirror" | tar xj
+fi
+
+pushd "$phpid"
 ./configure \
   --without-pear \
   --with-curl
