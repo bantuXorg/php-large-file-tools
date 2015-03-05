@@ -25,14 +25,14 @@ cache:
 
 install:
   - . travis/install-apt.sh
-  - . travis/compile-php.sh
-  - curl -sS https://getcomposer.org/installer | php
-  - php composer.phar install
+  - . travis/install-php.sh
+  - curl -sS https://getcomposer.org/installer | /usr/bin/php
+  - /usr/bin/php composer.phar install
 
 script:
   - truncate -s 5G test.bin
-  - php-$phpver/sapi/cli/php -r "var_dump(filesize('test.bin'));"
-  - php-$phpver/sapi/cli/php vendor/bin/phpunit
+  - /usr/local/bin/php -r "var_dump(filesize('test.bin'));"
+  - /usr/local/bin/php vendor/bin/phpunit
 
 matrix:
   fast_finish: true
