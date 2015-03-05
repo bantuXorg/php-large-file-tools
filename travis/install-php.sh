@@ -12,11 +12,7 @@ fi
 
 # PHP
 phpid="php-$phpver"
-if [ ! -d "$phpid" ]
-then
-    curl -L "http://php.net/get/$phpid.tar.bz2/from/this/mirror" | tar xj
-fi
-
+curl -L "http://php.net/get/$phpid.tar.bz2/from/this/mirror" | tar xj
 pushd "$phpid"
 ./configure \
   --without-pear \
@@ -27,11 +23,7 @@ popd
 
 # Xdebug
 xdebugid="xdebug-$phpxdebugver"
-if [ ! -d "$xdebugid" ]
-then
-    curl -L "http://xdebug.org/files/$xdebugid.tgz" | tar xz
-fi
-
+curl -L "http://xdebug.org/files/$xdebugid.tgz" | tar xz
 pushd "$xdebugid"
 /usr/local/bin/phpize
 ./configure --enable-xdebug
