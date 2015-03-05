@@ -36,7 +36,7 @@ install:
 script:
   - truncate -s 5G test.bin
   - /usr/local/bin/php -r "var_dump(filesize('test.bin'));"
-  - /usr/local/bin/php vendor/bin/phpunit --coverage-clover coverage.xml
+  - /usr/local/bin/php -d "zend_extension=xdebug.so" vendor/bin/phpunit --coverage-clover coverage.xml
 
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar

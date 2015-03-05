@@ -37,5 +37,4 @@ pushd "$xdebugid"
 ./configure --enable-xdebug
 make
 sudo make install
-echo "zend_extension=xdebug.so" >> `/usr/local/bin/php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
 popd
