@@ -10,6 +10,7 @@ else
   export CFLAGS="-m$phpint"
 fi
 
+# PHP
 phpid="php-$phpver"
 if [ ! -d "$phpid" ]
 then
@@ -22,4 +23,19 @@ pushd "$phpid"
   --with-curl
 make
 sudo make install
+popd
+
+# Xdebug
+xdebugid="xdebug-$phpxdebugver"
+if [ ! -d "$xdebugid" ]
+then
+    curl -L "http://xdebug.org/files/$xdebugid.tgz" | tar xz
+fi
+
+pushd "$xdebugid"
+/usr/local/bin/phpize
+./configure --enable-xdebug
+make
+sudo make install
+echo "zend_extension=xdebug.so" >> `/usr/local/bin/php --ini | grep "Loaded Configuration" | sed -e "s|.*:\s*||"`
 popd

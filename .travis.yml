@@ -1,18 +1,21 @@
 language: c
 
 env:
-  - phpver=5.6.6 phpint=64
-  - phpver=5.6.6 phpint=32 phplfs=1
-  - phpver=5.6.6 phpint=32
-  - phpver=5.5.22 phpint=64
-  - phpver=5.5.22 phpint=32 phplfs=1
-  - phpver=5.5.22 phpint=32
-  - phpver=5.4.38 phpint=64
-  - phpver=5.4.38 phpint=32 phplfs=1
-  - phpver=5.4.38 phpint=32
-  - phpver=5.3.29 phpint=64
-  - phpver=5.3.29 phpint=32 phplfs=1
-  - phpver=5.3.29 phpint=32
+  global:
+    - phpxdebugver=2.2.7
+  matrix:
+    - phpver=5.6.6 phpint=64
+    - phpver=5.6.6 phpint=32 phplfs=1
+    - phpver=5.6.6 phpint=32
+    - phpver=5.5.22 phpint=64
+    - phpver=5.5.22 phpint=32 phplfs=1
+    - phpver=5.5.22 phpint=32
+    - phpver=5.4.38 phpint=64
+    - phpver=5.4.38 phpint=32 phplfs=1
+    - phpver=5.4.38 phpint=32
+    - phpver=5.3.29 phpint=64
+    - phpver=5.3.29 phpint=32 phplfs=1
+    - phpver=5.3.29 phpint=32
 
 cache:
   apt: true
@@ -22,6 +25,7 @@ cache:
     - php-5.5.22
     - php-5.4.38
     - php-5.3.29
+    - xdebug-2.2.7
 
 install:
   - . travis/install-apt.sh
