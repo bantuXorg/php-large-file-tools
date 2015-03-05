@@ -21,4 +21,5 @@ pushd "$phpid"
   --without-pear \
   --with-curl
 make
+sudo make install
 popd
