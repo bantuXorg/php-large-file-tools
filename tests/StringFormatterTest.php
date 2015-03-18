@@ -9,7 +9,7 @@
 
 namespace bantu\LargeFileTools;
 
-class StringFormatterTest extends \PHPUnit_Framework_TestCase
+class StringFormatterTest extends TestCase
 {
     protected $instance;
 

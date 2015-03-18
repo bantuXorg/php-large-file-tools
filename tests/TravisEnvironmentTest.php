@@ -9,13 +9,10 @@
 
 namespace bantu\LargeFileTools;
 
-class TravisEnvironmentTest extends \PHPUnit_Framework_TestCase
+class TravisEnvironmentTest extends TestCase
 {
     public function testIntSize()
     {
-        if (!getenv('phpint')) {
-            $this->markTestSkipped('This test expects a phpint env variable.');
-        }
-        $this->assertSame(getenv('phpint') / 8, PHP_INT_SIZE);
+        $this->assertSame($this->getEnv('phpint') / 8, PHP_INT_SIZE);
     }
 }
