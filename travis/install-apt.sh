@@ -1,11 +1,11 @@
-#!/bin/sh
-PKG='php5-cli'
-if [ "$phpint" -eq "64" ]
-then
-  PKG="$PKG libcurl4-openssl-dev libxml2-dev"
-else
-  PKG="$PKG libcurl4-openssl-dev:i386 libxml2-dev:i386 gcc-multilib"
-fi
+#!/bin/sh -ex
+pkg='
+build-essential
+curl
+libcurl4-openssl-dev
+libxml2-dev
+php5-dev
+'
 
-sudo apt-get update
-sudo apt-get install $PKG
+apt-get update -qq
+apt-get install -qy $pkg
