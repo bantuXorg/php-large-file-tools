@@ -4,7 +4,7 @@ imports:
 tools:
     external_code_coverage:
         runs: 12
-        timeout: 3600
+        timeout: 9000
 
     php_code_sniffer:
         config:
