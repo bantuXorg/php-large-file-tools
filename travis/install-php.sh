@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -ex
 export CCASFLAGS="-m$phpint"
 export CPPFLAGS="-m$phpint"
 export LDFLAGS="-m$phpint"
@@ -11,22 +11,36 @@ else
 fi
 
 # PHP
-phpid="php-$phpver"
-curl -L "http://php.net/get/$phpid.tar.bz2/from/this/mirror" | tar xj
-pushd "$phpid"
+mkdir -p "$phpdir"
+pushd "$phpdir"
+if [ ! -e "./LICENSE" ]
+then
+  curl -L "http://php.net/get/php-$phpver.tar.bz2/from/this/mirror" |
+    tar xj --strip-components=1
+fi
 ./configure \
+  --disable-cgi \
+  --prefix="$(pwd)/target" \
   --without-pear \
-  --with-curl
-make
-sudo make install
+  --with-curl \
+  > /dev/null
+make > /dev/null
+make install
 popd
 
 # Xdebug
-xdebugid="xdebug-$phpxdebugver"
-curl -L "http://xdebug.org/files/$xdebugid.tgz" | tar xz
-pushd "$xdebugid"
-/usr/local/bin/phpize
-./configure --enable-xdebug
-make
-sudo make install
+mkdir -p "$xdebugdir"
+pushd "$xdebugdir"
+if [ ! -e "./LICENSE" ]
+then
+  curl -L "http://xdebug.org/files/xdebug-$phpxdebugver.tgz" |
+    tar xz --strip-components=1
+fi
+"../$phptarget/bin/phpize"
+./configure \
+  --enable-xdebug \
+  --with-php-config="../$phptarget/bin/php-config" \
+  > /dev/null
+make > /dev/null
+make install
 popd

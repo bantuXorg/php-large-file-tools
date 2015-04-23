@@ -1,33 +1,58 @@
-language: c
+language: php
+
+cache:
+  directories:
+    - php-5.6.8-64-0
+    - php-5.6.8-32-1
+    - php-5.6.8-32-0
+    - php-5.5.24-64-0
+    - php-5.5.24-32-1
+    - php-5.5.24-32-0
+    - php-5.4.40-64-0
+    - php-5.4.40-32-1
+    - php-5.4.40-32-0
+    - php-5.3.29-64-0
+    - php-5.3.29-32-1
+    - php-5.3.29-32-0
+    - proot
+    - rootfs-amd64
+    - rootfs-i386
+    - vendor
+    - xdebug-2.2.7-php-5.6.8-64-0
+    - xdebug-2.2.7-php-5.6.8-32-1
+    - xdebug-2.2.7-php-5.6.8-32-0
+    - xdebug-2.2.7-php-5.5.24-64-0
+    - xdebug-2.2.7-php-5.5.24-32-1
+    - xdebug-2.2.7-php-5.5.24-32-0
+    - xdebug-2.2.7-php-5.4.40-64-0
+    - xdebug-2.2.7-php-5.4.40-32-1
+    - xdebug-2.2.7-php-5.4.40-32-0
+    - xdebug-2.2.7-php-5.3.29-64-0
+    - xdebug-2.2.7-php-5.3.29-32-1
+    - xdebug-2.2.7-php-5.3.29-32-0
 
 env:
   global:
     - phpxdebugver=2.2.7
   matrix:
-    - phpver=5.6.6 phpint=64
-    - phpver=5.6.6 phpint=32 phplfs=1
-    - phpver=5.6.6 phpint=32
-    - phpver=5.5.22 phpint=64
-    - phpver=5.5.22 phpint=32 phplfs=1
-    - phpver=5.5.22 phpint=32
-    - phpver=5.4.38 phpint=64
-    - phpver=5.4.38 phpint=32 phplfs=1
-    - phpver=5.4.38 phpint=32
-    - phpver=5.3.29 phpint=64
+    - phpver=5.6.8 phpint=64 phplfs=0
+    - phpver=5.6.8 phpint=32 phplfs=1
+    - phpver=5.6.8 phpint=32 phplfs=0
+    - phpver=5.5.24 phpint=64 phplfs=0
+    - phpver=5.5.24 phpint=32 phplfs=1
+    - phpver=5.5.24 phpint=32 phplfs=0
+    - phpver=5.4.40 phpint=64 phplfs=0
+    - phpver=5.4.40 phpint=32 phplfs=1
+    - phpver=5.4.40 phpint=32 phplfs=0
+    - phpver=5.3.29 phpint=64 phplfs=0
     - phpver=5.3.29 phpint=32 phplfs=1
-    - phpver=5.3.29 phpint=32
+    - phpver=5.3.29 phpint=32 phplfs=0
 
 install:
-  - . travis/install-apt.sh
-  - . travis/install-php.sh
-  - curl -sS https://getcomposer.org/installer | /usr/bin/php
-  - /usr/bin/php composer.phar install
+  - travis/install.sh
 
 script:
-  - truncate -s 5G test.bin
-  - /usr/local/bin/php -r "var_dump(filesize('test.bin'));"
-  - xdebug=`find /usr/local/lib/php/ -name xdebug.so`
-  - /usr/local/bin/php -d zend_extension="$xdebug" vendor/bin/phpunit --coverage-clover coverage.xml
+  - travis/script.sh
 
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar
